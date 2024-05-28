@@ -1,21 +1,17 @@
 <x-layout>
 <main class="max-w-6xl mx-auto mt-6 lg:mt-20 space-y-6">
-            <div class="lg:grid lg:grid-cols-6">
-                <x-post-featured-card />
-
-            </div>
-                
 
 
-            <div class="lg:grid lg:grid-cols-2">
-                <x-post-card />
-                
-            </div>
 
-            <div class="lg:grid lg:grid-cols-3">
-                <x-post-card />
-                
+    @if ($posts->count() > 1)
+        
+    <x-posts-grid :posts="$posts"/>  
+    @else 
+    <p class="text-center">No posts yet. Please check back later.</p>
+    @endif
 
-            </div>
-        </main>
+  
+
+    
+    </main>
 </x-layout>
