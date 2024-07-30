@@ -1,12 +1,9 @@
 <?php
 
-use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PostController;
-use App\Models\Post;
+use App\Http\Controllers\RegistrationController;
 use App\Models\Category;
 use App\Models\User;
-use Spatie\YamlFrontMatter\YamlFrontMatter;
-
 
 Route::get('/', [PostController::class, 'index'])->name('home');
 
@@ -21,8 +18,11 @@ Route::get('categories/{category:slug}', function (Category $category) {
 })->name('category');
 
 Route::get('authors/{author:username}', function (User $author) {
-    return view('posts', [
+    return view('posts.index', [
         'posts' => $author->posts,
         'categories' => Category::all()
     ]);
 });
+
+Route::get('register', [RegistrationController::class, 'create']);
+Route::post('register', [RegistrationController::class, 'store']);
