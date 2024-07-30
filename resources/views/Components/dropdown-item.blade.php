@@ -1,2 +1,15 @@
-<a {{ $attributes->merge(['class' => 'block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-gray-900']) }}>
+@props(['active' => false])
+
+@php
+
+    $clases = 'block text-left px-3 text-sm leading-6 hover:bg-blue-500 hover:text-white focus:bg-blue-500 focus:text-white';
+
+    if ($active) {
+        $clases .= ' bg-blue-500 text-white';
+    }
+@endphp
+
+<a {{ $attributes->merge(['class' => $clases]) }}>
     {{ $slot }} </a>
+
+
