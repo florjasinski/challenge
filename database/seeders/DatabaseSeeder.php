@@ -1,26 +1,26 @@
 <?php
 
+// database/seeders/DatabaseSeeder.php
+
 namespace Database\Seeders;
 
 use App\Models\User;
 use Illuminate\Database\Seeder;
-use App\Models\Category;
 use App\Models\Post;
-use Illuminate\Support\Str; // Add this import statement
 
 class DatabaseSeeder extends Seeder
 {
     public function run(): void
     {
+        // Crear un usuario sin la columna 'name'
         $user = User::factory()->create([
-            'name' => 'John Doe',
+            'email' => 'john.doe@example.com',
+            'password' => bcrypt('password'), // Puedes ajustar esto según tus necesidades
         ]);
 
+        // Crear posts asociados a ese usuario
         Post::factory(5)->create([
             'user_id' => $user->id,
         ]);
-
-
-
     }
 }
