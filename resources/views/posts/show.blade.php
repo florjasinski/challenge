@@ -1,4 +1,4 @@
-<x-layout>
+<x-layout-register>
 
 
     <section class="px-6 py-8">
@@ -56,6 +56,43 @@
                         {!! $post->body !!}
                     </div>
                 </div>
+
+                <section class="col-span-8 col-start-5 mt-10 space-y-6">
+                    <h2 class="font-bold text-2xl">Comments</h2>
+
+                    <form method="POST" action="/posts/{{ $post->slug }}/comments" class="mt-10">
+                        @csrf
+
+                        <header class="flex items-center">
+                            <img src="https://i.pravatar.cc/60?u={{ auth()->id() }}" alt="" width="40" height="40"
+                                class="rounded-full">
+
+                            <h2 class="ml-4">Want to participate?</h2>
+                        </header>
+
+                        <div class="mt-6">
+                            <textarea name="body" class="w-full text-sm focus:outline-none focus:ring"
+                                placeholder="Quick, think of something to say!" rows="5"></textarea>
+
+                            @error('body')
+                                <span class="text-xs text-red-500">{{ $message }}</span>
+                            @enderror
+                        </div>
+
+                        <div class="flex justify-end mt-6">
+                            <button type="submit"
+                                class="transition-colors duration-300 bg-blue-500 hover:bg-blue-600 text-white rounded-lg px-10 py-2">Post
+                                Comment</button>
+                        </div>
+                    
+                    </form>
+
+
+
+                    @foreach ($post->comments as $comment)
+                        <x-comment :comment="$comment" />
+                    @endforeach
+                </section>
             </article>
         </main>
 
@@ -86,4 +123,4 @@
         </footer>
     </section>
 
-</x-layout>
+</x-layout-register>

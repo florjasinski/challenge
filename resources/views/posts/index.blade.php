@@ -1,5 +1,5 @@
 <!-- resources/views/posts.blade.php -->
-<x-layout>
+<x-layout-register>
     <main class="max-w-6xl mx-auto mt-6 lg:mt-20 space-y-6">
         <x-_posts-header :categories="$categories"/>
 
@@ -15,4 +15,4 @@
             <p class="text-center">No posts yet. Please check back later.</p>
         @endif
     </main>
-</x-layout>
+</x-layout-register>
