@@ -74,6 +74,35 @@
                             <textarea name="body" class="w-full text-sm focus:outline-none focus:ring"
                                 placeholder="Quick, think of something to say!" rows="5"></textarea>
 
+
+                                <input type="text" id="address-input" placeholder="Escribe una dirección..." />
+                                <ul id="results"></ul>
+
+                                <script>
+                                document.getElementById('address-input').addEventListener('keyup', function() {
+                                    const address = this.value;
+                                    const url = `https://photon.komoot.io/api/?q=${encodeURIComponent(address)}&limit=5`;
+
+                                    fetch(url)
+                                        .then(response => response.json())
+                                        .then(data => {
+                                            const resultsList = document.getElementById('results');
+                                            resultsList.innerHTML = '';
+
+                                            data.features.forEach(result => {
+                                                const li = document.createElement('li');
+                                                li.textContent = result.properties.name;
+                                                li.addEventListener('click', function() {
+                                                    document.getElementById('address-input').value = result.properties.name;
+                                                    resultsList.innerHTML = '';
+                                                });
+                                                resultsList.appendChild(li);
+                                            });
+                                        })
+                                        .catch(error => console.error('Error:', error));
+                                });
+                                </script>
+
                             @error('body')
                                 <span class="text-xs text-red-500">{{ $message }}</span>
                             @enderror

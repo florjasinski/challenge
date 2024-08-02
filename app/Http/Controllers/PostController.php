@@ -24,5 +24,16 @@ class PostController extends Controller
             'categories' => Category::all()
         ]);
     }
+
+    public function create()
+    {
+
+        if (auth()->guest()) {
+            return redirect('/login');
+        }
+        return view('posts.create');
+    }
+
+    
     
 }
