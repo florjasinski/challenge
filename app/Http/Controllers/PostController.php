@@ -6,13 +6,14 @@ use Illuminate\Http\Request;
 use App\Models\Post;
 use App\Models\Category;
 
+
 class PostController extends Controller
 {
     public function index()
     {
         
         return view('posts.index', [
-            'posts' => Post::latest()->filter(request(['search', 'category', 'author']))->paginate(2)->withQueryString(),
+            'posts' => Post::latest()->filter(request(['search', 'category', 'author']))->paginate()->withQueryString(),
             'categories' => Category::all(),
         ]);
     }
@@ -25,14 +26,6 @@ class PostController extends Controller
         ]);
     }
 
-    public function create()
-    {
-
-        if (auth()->guest()) {
-            return redirect('/login');
-        }
-        return view('posts.create');
-    }
 
     
     
