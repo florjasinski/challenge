@@ -4,7 +4,7 @@
             <div class="text-center mb-10">
                 <h1 class="text-3xl font-bold text-black">Welcome</h1>
             </div>
-            <form method="POST" action="/register">
+            <form method="POST" action="/">
                 @csrf
 
                

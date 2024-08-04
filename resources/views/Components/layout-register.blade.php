@@ -22,8 +22,8 @@
                 <a href="/" class="text-xs font-bold uppercase text-gray-700">Notes</a>
             </div>
             <div class="space-x-4">
-                <a href="/register" class="text-xs font-bold uppercase text-gray-700">Log in</a>
-                <a href="/register" class="bg-purple-500 rounded-full text-xs font-semibold text-white uppercase py-3 px-5">
+                <a href="/" class="text-xs font-bold uppercase text-gray-700">Log in</a>
+                <a href="/" class="bg-purple-500 rounded-full text-xs font-semibold text-white uppercase py-3 px-5">
                     Sign in
                 </a>
             </div>

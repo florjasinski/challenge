@@ -1,12 +1,13 @@
 <?php
 
+// database/seeders/DatabaseSeeder.php
 namespace Database\Seeders;
 
 use App\Models\User;
-use Illuminate\Database\Seeder;
-use App\Models\Category;
 use App\Models\Post;
-use Illuminate\Support\Str; // Add this import statement
+use App\Models\Contact;
+use Illuminate\Database\Seeder;
+use Illuminate\Support\Str;
 
 class DatabaseSeeder extends Seeder
 {
@@ -21,7 +22,8 @@ class DatabaseSeeder extends Seeder
             'user_id' => $user->id,
         ]);
 
-
-
+        Contact::factory(10)->create([
+            'user_id' => $user->id,
+        ]);
     }
 }

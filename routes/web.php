@@ -7,7 +7,11 @@ use App\Models\Category;
 use App\Models\User;
 
 
-Route::get('/', [PostController::class, 'index'])->name('home');
+Route::get('/contacts', [PostController::class, 'index']);
+
+//Route::get('/contacts', [ContactController::class, 'index'])->name('contacts.index');
+
+
 
 Route::get('posts/{post:slug}', [PostController::class, 'show']);
 
@@ -26,10 +30,9 @@ Route::get('authors/{author:username}', function (User $author) {
     ]);
 });
 
-Route::get('register', [SessionController::class, 'create']);
-Route::post('register', [SessionController::class, 'store']);
-Route::post('logout', [SessionController::class, 'destroy']);
-Route::get('login', [SessionController::class, 'create']);
+Route::get('/', [SessionController::class, 'create']);
+Route::post('/', [SessionController::class, 'store']);
+
 
 
 Route::post('posts/{post:slug}/comments', [PostCommentsController::class, 'store']);

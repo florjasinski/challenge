@@ -8,12 +8,7 @@ use Illuminate\Http\Request;
 class SessionController extends Controller
 {
    
-    public function destroy()
-    {
-        auth()->logout();
 
-        return redirect("/register");
-    }
 
     public function create()
     {
@@ -28,13 +23,11 @@ class SessionController extends Controller
         ]);
 
         
-
-
-
         $user = User::create($attributes);
 
         auth()->login($user);
 
-        return redirect()->route('home');
+        return redirect('/contacts');
+
     }
 }
