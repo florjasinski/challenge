@@ -3,17 +3,21 @@ use App\Http\Controllers\PostController;
 use App\Http\Controllers\SessionController;
 use App\Http\Controllers\PostCommentsController;
 use App\Http\Controllers\AdminPostController;
+use App\Http\Controllers\ContactController;
 use App\Models\Category;
 use App\Models\User;
 
 
-Route::get('/contacts', [PostController::class, 'index']);
+Route::get('/posts', [PostController::class, 'index']);
 
-//Route::get('/contacts', [ContactController::class, 'index'])->name('contacts.index');
+Route::get('/contacts', [ContactController::class, 'index'])->name('contacts.index');
 
 
 
-Route::get('posts/{post:slug}', [PostController::class, 'show']);
+
+Route::get('contacts/{contact:id}', [ContactController::class, 'show']);
+
+
 
 Route::get('categories/{category:slug}', function (Category $category) {
     return view('posts', [

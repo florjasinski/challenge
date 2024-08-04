@@ -6,20 +6,17 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 class Contact extends Model
-
-
 {
+    use HasFactory;
 
-    use HasFactory; 
-    
-    protected $fillable = [
-        'user_id',
-        'name',
-        'address',
-        'email',
-        'phone',
-        'profile_picture',
-    ];
+    protected $guarded = [];
+
+    public function scopeFilter($query, array $filters)
+    {
+        $query->when($filters['search'] ?? false, function ($query, $search) {
+            $query->where('name', 'like', '%' . $search . '%');
+        });
+    }
 
     public function user()
     {

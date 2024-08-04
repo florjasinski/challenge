@@ -23,6 +23,7 @@ class ContactFactory extends Factory
             'address' => $this->faker->address(),
             'email' => $this->faker->unique()->safeEmail(),
             'phone' => $this->faker->phoneNumber(),
+            'title' => $this->faker->sentence(),
             'profile_picture' => $this->faker->imageUrl(),
             'user_id' => User::factory(),
         ];
