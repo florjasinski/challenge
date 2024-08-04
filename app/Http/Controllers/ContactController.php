@@ -21,6 +21,11 @@ class ContactController extends Controller
         ]);
     }
 
+    public function edit(Contact $contact)
+    {
+        return view('admin.edit', ['contact' => $contact]);
+    }
+
 
     
 
