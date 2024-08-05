@@ -1,7 +1,7 @@
 <x-layout-register>
 <form method="POST" action="/contacts/{{ $contact->id }}" enctype="multipart/form-data">
         @csrf
-        @method('PATCH')
+        @method('PUT')
 
         <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
             <div>

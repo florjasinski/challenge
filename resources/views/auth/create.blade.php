@@ -4,6 +4,7 @@
             <div class="text-center mb-10">
                 <h1 class="text-3xl font-bold text-black">Welcome</h1>
             </div>
+            
             <form method="POST" action="/">
                 @csrf
 
@@ -20,7 +21,6 @@
                     <input type="password" name="password" id="password" required
                            class="w-full px-4 py-2 border rounded-lg bg-purple-50 focus:outline-none focus:ring-2 focus:ring-purple-600">
                 </div>
-
 
                 <div>
                     <button type="submit"

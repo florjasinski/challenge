@@ -4,6 +4,7 @@ use App\Http\Controllers\SessionController;
 use App\Http\Controllers\PostCommentsController;
 use App\Http\Controllers\AdminPostController;
 use App\Http\Controllers\ContactController;
+use App\Http\Controllers\Controller;
 use App\Models\Category;
 use App\Models\User;
 
@@ -13,12 +14,7 @@ Route::get('/posts', [PostController::class, 'index']);
 Route::get('/contacts', [ContactController::class, 'index'])->name('contacts.index');
 
 
-
-
-
-
 Route::get('contacts/{contact:id}', [ContactController::class, 'show']);
-
 
 
 Route::get('categories/{category:slug}', function (Category $category) {
@@ -37,7 +33,6 @@ Route::get('authors/{author:username}', function (User $author) {
 });
 
 Route::get('/', [SessionController::class, 'create']);
-
 Route::post('/', [SessionController::class, 'store']);
 
 
@@ -53,6 +48,6 @@ Route::patch('admin/posts/{post}', [AdminPostController::class, 'update']);
 Route::get('admin/contacts/{contact}/add', [ContactController::class, 'create']);
 Route::post('admin/contacts', [ContactController::class, 'store']);
 Route::get('/contacts/{contact}/edit', [ContactController::class, 'edit']);
-Route::patch('/contacts/{contact}', [ContactController::class, 'update']);
+Route::put('/contacts/{contact}', [ContactController::class, 'update']);
 
 
