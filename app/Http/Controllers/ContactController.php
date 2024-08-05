@@ -21,36 +21,6 @@ class ContactController extends Controller
         ]);
     }
 
-    public function edit(Contact $contact)
-    {
-        return view('contacts.edit', [
-            'contact' => $contact,
-        ]);
-    }
-
-    public function update(Contact $contact)
-    {
-        $attributes = request()->validate([
-            'name' => 'required',
-            'email' => 'required',
-            'phone' => 'required',
-            'profile_picture' => 'required',
-            'surname' => 'required',
-            'title' => 'required',
-            'address' => 'required',
-
-        ]);
-
-        if (request()->hasFile('profile_picture')) {
-            $attributes['profile_picture'] = request()->file('profile_picture')->store('profile_pictures');
-        }
-
-        
-        $contact->update($attributes);
-
-        return redirect('/contacts');
-    }
-
     public function create()
     {
         return view('contacts.create', [
@@ -58,28 +28,54 @@ class ContactController extends Controller
         ]);
     }
 
-    public function store()
+   
+    public function store(Request $request)
     {
-        $attributes = request()->validate([
+        $attributes = $request->validate([
             'name' => 'required',
-            'email' => 'required',
-            'phone' => 'required',
-            'profile_picture' => 'required',
             'surname' => 'required',
             'title' => 'required',
+            'profile_picture' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
             'address' => 'required',
-
+            'phone' => 'required',
+            'email' => 'required|email',
         ]);
 
-        if (request()->hasFile('profile_picture')) {
-            $attributes['profile_picture'] = request()->file('profile_picture')->store('profile_pictures');
+        if ($request->hasFile('profile_picture')) {
+            $attributes['profile_picture'] = $request->file('profile_picture')->store('profile_pictures', 'public');
         }
 
         Contact::create($attributes);
 
-        return redirect('/contacts');
+        return redirect()->route('contacts.index');
     }
 
-          
+    public function edit(Contact $contact)
+{
+    return view('contacts.edit', ['contact' => $contact]);
+}
+
+public function update(Request $request, Contact $contact)
+{
+    $attributes = $request->validate([
+        'name' => 'required',
+        'surname' => 'required',
+        'title' => 'required',
+        'profile_picture' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+        'address' => 'required',
+        'phone' => 'required',
+        'email' => 'required|email',
+    ]);
+
+    if ($request->hasFile('profile_picture')) {
+        $attributes['profile_picture'] = $request->file('profile_picture')->store('profile_pictures', 'public');
+    }
+
+    $contact->update($attributes);
+
+    return redirect()->route('contacts.index');
+}
+
+
 }
 

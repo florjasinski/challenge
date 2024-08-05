@@ -19,7 +19,7 @@
             <article class="bg-white shadow-lg rounded-lg p-8 lg:p-12 relative">
                
                 <div class="absolute top-4 right-4 flex space-x-2">
-                    <a href="/admin/contacts/{{ $contact->id }}/edit" class="bg-blue-500 text-white px-3 py-1 rounded-full hover:bg-blue-600">
+                    <a href="/contacts/{{ $contact->id }}/edit" class="bg-blue-500 text-white px-3 py-1 rounded-full hover:bg-blue-600">
                         Edit
                     </a>
                     <a href="/admin/contacts/{{ $contact->id }}/add" class="bg-green-500 text-white px-3 py-1 rounded-full hover:bg-green-600">
