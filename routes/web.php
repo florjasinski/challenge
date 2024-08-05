@@ -15,6 +15,8 @@ Route::get('/contacts', [ContactController::class, 'index'])->name('contacts.ind
 
 
 
+
+
 Route::get('contacts/{contact:id}', [ContactController::class, 'show']);
 
 
@@ -35,6 +37,7 @@ Route::get('authors/{author:username}', function (User $author) {
 });
 
 Route::get('/', [SessionController::class, 'create']);
+
 Route::post('/', [SessionController::class, 'store']);
 
 

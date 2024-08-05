@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 use App\Models\User;
 
+
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class SessionController extends Controller
 {
@@ -12,7 +14,7 @@ class SessionController extends Controller
 
     public function create()
     {
-        return view('register.create');
+        return view('auth.create');
     }
 
     public function store()
@@ -22,12 +24,17 @@ class SessionController extends Controller
             'password' => 'required'
         ]);
 
-        
-        $user = User::create($attributes);
+        if (Auth::attempt($attributes)) {
+            session()->regenerate();
+            return redirect('/')->with('success', 'Welcome Back!');
+        }
 
-        auth()->login($user);
+        return back()
+            ->withInput()
+            ->withErrors(['email' => 'Your provided credentials could not be verified.']);
 
-        return redirect('/contacts');
 
     }
 }
+
+   
