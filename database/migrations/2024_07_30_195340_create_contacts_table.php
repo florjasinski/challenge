@@ -19,8 +19,9 @@ return new class extends Migration
             $table->string('email');
             $table->string('phone');
             $table->string('title');
+            $table->text('surname');
             $table->string('profile_picture')->nullable();
-            $table->unsignedBigInteger('user_id');
+            $table->unsignedBigInteger('user_id')->nullable();
     
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
         });

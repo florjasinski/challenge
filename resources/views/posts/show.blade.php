@@ -13,6 +13,9 @@
                     <a href="/admin/contacts/{{ $contact->id }}/edit" class="text-blue-500 hover:text-blue-600">Edit</a>
 
                 </td>
+                <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
+                    <a href="/admin/contacts/{{ $contact->id }}/add" class="text-blue-500 hover:text-blue-600">Add</a>
+                </td>
 
                     <div class="flex items-center lg:justify-center text-sm mt-4">
                         <img src= "{{ $contact->thumbnail }}" alt="Lary avatar">

@@ -49,3 +49,6 @@ Route::patch('admin/posts/{post}', [AdminPostController::class, 'update']);
 
 
 Route::get('admin/contacts/{contact}/edit', [ContactController::class, 'edit']);
+//Route::patch('admin/contacts/{contact}', [ContactController::class, 'update']);
+Route::get('admin/contacts/{contact}/add', [ContactController::class, 'create']);
+Route::post('admin/contacts', [ContactController::class, 'store']);
