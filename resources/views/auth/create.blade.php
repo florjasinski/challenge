@@ -28,6 +28,16 @@
                         Login
                     </button>
                 </div>
+
+                @if ($errors->any())
+                    <div class="mt-4">
+                        <ul>
+                            @foreach ($errors->all() as $error)
+                                <li class="text-red-500">{{ $error }}</li>
+                            @endforeach
+                        </ul>
+                    </div>
+                @endif
             </form>
         </div>
     </div>

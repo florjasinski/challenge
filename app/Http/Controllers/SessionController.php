@@ -18,25 +18,25 @@ class SessionController extends Controller
     }
 
     public function store()
-    {
-        $credentials = request()->validate([
-            'email' => 'required|email',
-            'password' => 'required',
-        ]);
-
-        dd(Auth::attempt($credentials));
-
+{
     
-        if (Auth::attempt($credentials)) {
-            session()->regenerate();
-            
-            return redirect()->intended('/posts');
-        } else {
-            return redirect()->intended('/contacts');
-        }
     
-        
+    $attributes = [
+        'email' => request('email'),
+        'password' => request('password'),
+    ];
+
+
+    if (! auth()->attempt($attributes)) {
+        return redirect()->back()->withErrors([
+            'email' => 'The provided credentials do not match our records.',
+        ]); 
     }
-    
 
+    session()->regenerate();
+
+
+    return redirect()->intended('/contacts');
 }
+}
+

@@ -13,18 +13,15 @@ class DatabaseSeeder extends Seeder
 {
     public function run(): void
     {
-        $user = User::factory()->create([
-            'email' => 'flor@gmail.com',
-            'password' => bcrypt('12345678'),
+        $users = User::factory(5)->create(); 
+    
+        foreach ($users as $user) {
             
-        ]);
-
-        Post::factory(5)->create([
-            'user_id' => $user->id,
-        ]);
-
-        Contact::factory(10)->create([
-            'user_id' => $user->id,
-        ]);
+    
+            Contact::factory(10)->create([
+                'user_id' => $user->id,
+            ]);
+        }
     }
+    
 }

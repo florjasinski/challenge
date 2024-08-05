@@ -37,6 +37,9 @@ Route::post('/', [SessionController::class, 'store']);
 
 
 
+
+
+
 Route::post('posts/{post:slug}/comments', [PostCommentsController::class, 'store']);
 
 Route::get('admin/posts/create', [AdminPostController::class, 'create']);
