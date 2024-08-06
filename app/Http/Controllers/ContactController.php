@@ -9,9 +9,15 @@ class ContactController extends Controller
 {
     public function index()
     {
-        return view('contacts.index', [
-            'contacts' => Contact::latest()->filter(request(['search']))->paginate()->withQueryString(),
-        ]);
+    $user = auth()->user();
+
+    return view('contacts.index', [
+        'contacts' => Contact::where('user_id', $user->id)
+                            ->latest()
+                            ->filter(request(['search']))
+                            ->paginate()
+                            ->withQueryString(),
+    ]);
     }
 
     public function show(Contact $contact)
@@ -41,6 +47,8 @@ class ContactController extends Controller
             'email' => 'required|email',
         ]);
 
+        $attributes['user_id'] = auth()->id();
+
         if ($request->hasFile('profile_picture')) {
             $attributes['profile_picture'] = $request->file('profile_picture')->store('profile_pictures', 'public');
         }
@@ -66,6 +74,8 @@ public function update(Request $request, Contact $contact)
         'phone' => 'required',
         'email' => 'required|email',
     ]);
+
+    
 
     if ($request->hasFile('profile_picture')) {
         $attributes['profile_picture'] = $request->file('profile_picture')->store('profile_pictures', 'public');
