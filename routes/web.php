@@ -17,14 +17,17 @@ Route::get('/', [SessionController::class, 'create']);
 Route::post('/', [SessionController::class, 'store']);
 
 
-Route::get('/contacts', [ContactController::class, 'index'])->middleware('token.valid');
-
-Route::get('contacts/{contact:id}', [ContactController::class, 'show']);
 
 
-Route::get('admin/contacts/{contact}/add', [ContactController::class, 'create']);
-Route::post('admin/contacts', [ContactController::class, 'store']);
-Route::get('/contacts/{contact}/edit', [ContactController::class, 'edit']);
-Route::put('/contacts/{contact}', [ContactController::class, 'update']);
+Route::get('/contacts', [ContactController::class, 'index'])->middleware(\App\Http\Middleware\AdminMiddleware::class)->name('contacts.index');
+
+
+Route::get('contacts/{contact:id}', [ContactController::class, 'show'])->middleware(\App\Http\Middleware\AdminMiddleware::class);
+
+
+Route::get('admin/contacts/{contact}/add', [ContactController::class, 'create'])->middleware(\App\Http\Middleware\AdminMiddleware::class);
+Route::post('admin/contacts', [ContactController::class, 'store'])->middleware(\App\Http\Middleware\AdminMiddleware::class);
+Route::get('/contacts/{contact}/edit', [ContactController::class, 'edit'])->middleware(\App\Http\Middleware\AdminMiddleware::class);
+Route::put('/contacts/{contact}', [ContactController::class, 'update'])->middleware(\App\Http\Middleware\AdminMiddleware::class);
 
 

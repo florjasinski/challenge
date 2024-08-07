@@ -41,6 +41,12 @@ class User extends Authenticatable
         ];
     }
 
+    public static function authenticateToken($token)
+    {
+        // Verifica el token en la base de datos
+        return self::where('api_token', $token)->first();
+    }
+
 
     public function posts()
     {
