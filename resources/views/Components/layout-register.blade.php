@@ -7,7 +7,14 @@
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700&display=swap" rel="stylesheet">
     <script src="//unpkg.com/alpinejs@2.8.0/dist/alpine.js" defer></script>
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    <script src="https://unpkg.com/vue-router@4/dist/vue-router.global.js"></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+    <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
+    
     <title>BuildOnline</title>
+    
 </head>
 <body style="font-family: 'Open Sans', sans-serif;">
     <section class="px-6 py-8 min-h-screen flex flex-col">
