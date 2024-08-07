@@ -25,8 +25,9 @@ class ContactFactory extends Factory
             'phone' => $this->faker->phoneNumber(),
             'title' => $this->faker->sentence(),
             'surname' => $this->faker->lastName(),
-            'profile_picture' => $this->faker->imageUrl(),
+            'profile_picture' => "https://i.pravatar.cc/60?u=" . $this->faker->unique()->safeEmail(),
             'user_id' => User::factory(),
         ];
     }
 }
+

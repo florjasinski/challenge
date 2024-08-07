@@ -37,5 +37,15 @@
         <div class="flex justify-center mt-8">
             <button type="submit" class="bg-blue-400 text-white rounded-lg px-8 py-2 hover:bg-blue-500">Update</button>
         </div>
+
+        @if ($errors->any())
+            <div class="mt-4">
+                <ul>
+                    @foreach ($errors->all() as $error)
+                        <li class="text-red-500">{{ $error }}</li>
+                    @endforeach
+                </ul>
+            </div>
+        @endif
     </form>
 </x-layout-register>

@@ -3,7 +3,11 @@
 
 <article class="transition-colors duration-300 hover:bg-purple-100 bg-purple-50 rounded-xl p-4 flex items-center justify-between space-x-4">
     <div class="flex items-center space-x-4">
-    <img src="https://i.pravatar.cc/60?u={{ $contact->email }}" alt="Profile picture of {{ $contact->name }}" class="rounded-full w-12 h-12">
+    <img src="{{ Str::startsWith($contact->profile_picture, 'http') ? $contact->profile_picture : asset('storage/' . $contact->profile_picture) }}" 
+     alt="Profile picture of {{ $contact->name }}" 
+     class="rounded-full w-12 h-12">
+
+
         <div>
             <h2 class="text-lg font-bold">
                 {{ $contact->name }}

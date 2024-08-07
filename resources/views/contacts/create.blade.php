@@ -42,6 +42,16 @@
                     <div class="flex justify-center mt-8">
                         <button type="submit" class="bg-purple-500 text-white px-6 py-3 rounded-full shadow-md hover:bg-purple-600">Save</button>
                     </div>
+
+                    @if ($errors->any())
+                        <div class="mt-4">
+                            <ul>
+                                @foreach ($errors->all() as $error)
+                                    <li class="text-red-500">{{ $error }}</li>
+                                @endforeach
+                            </ul>
+                        </div>
+                    @endif
                 </form>
             </article>
         </main>

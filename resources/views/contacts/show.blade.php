@@ -29,7 +29,10 @@
 
                 <div class="text-center">
                     <div class="relative inline-block">
-                        <img src="https://i.pravatar.cc/60?u={{ $contact->email }}" alt="{{ $contact->name }}" class="w-24 h-24 rounded-full mx-auto border-4 border-white shadow-lg">
+                    <img src="{{ Str::startsWith($contact->profile_picture, 'http') ? $contact->profile_picture : asset('storage/' . $contact->profile_picture) }}" 
+                        alt="Profile picture of {{ $contact->name }}" 
+                        class="rounded-full w-12 h-12">
+
                     </div>
                     <h1 class="mt-6 text-2xl font-bold text-gray-800">{{ $contact->name }}</h1>
                     <p class="text-gray-600">{{ $contact->title }}</p>
