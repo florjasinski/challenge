@@ -66,6 +66,6 @@ class AdminPostController extends Controller
 
         $post->update($attributes);
 
-        return redirect('/admin/posts');
+        return redirect('/api/posts');
     }
 }

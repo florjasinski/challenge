@@ -5,7 +5,7 @@
     <h2 class="text-2xl font-bold mb-2 text-left">Contacts</h2> <!-- Ajuste de tamaño de fuente y margen inferior -->
 
     <div class="relative max-w-full mx-auto flex items-center bg-gray-200 rounded-lg shadow-lg">
-        <form method="GET" action="/contacts" class="w-full flex items-center">
+        <form method="GET" action="/api/contacts" class="w-full flex items-center">
             <input 
                 type="text" 
                 name="search" 

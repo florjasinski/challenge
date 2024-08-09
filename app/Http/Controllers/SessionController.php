@@ -37,7 +37,7 @@ class SessionController extends Controller
     session()->regenerate();
 
 
-    return redirect()->intended('/contacts');
+    return redirect()->intended('/api/contacts');
 }
 }
 

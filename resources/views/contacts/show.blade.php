@@ -3,7 +3,7 @@
         <main class="max-w-3xl mx-auto mt-10 lg:mt-20 space-y-6">
             <!-- Back to Contacts button -->
             <div class="flex justify-start mb-4">
-                <a href="/contacts"
+                <a href="/api/contacts"
                     class="transition-colors duration-300 relative inline-flex items-center text-lg hover:text-blue-500">
                     <svg width="22" height="22" viewBox="0 0 22 22" class="mr-2">
                         <g fill="none" fill-rule="evenodd">
@@ -19,10 +19,10 @@
             <article class="bg-white shadow-lg rounded-lg p-8 lg:p-12 relative">
                
                 <div class="absolute top-4 right-4 flex space-x-2">
-                    <a href="/contacts/{{ $contact->id }}/edit" class="bg-blue-500 text-white px-3 py-1 rounded-full hover:bg-blue-600">
+                    <a href="/api/contacts/{{ $contact->id }}/edit" class="bg-blue-500 text-white px-3 py-1 rounded-full hover:bg-blue-600">
                         Edit
                     </a>
-                    <a href="/admin/contacts/{{ $contact->id }}/add" class="bg-green-500 text-white px-3 py-1 rounded-full hover:bg-green-600">
+                    <a href="/api/contacts/{{ $contact->id }}" class="bg-green-500 text-white px-3 py-1 rounded-full hover:bg-green-600">
                         Add
                     </a>
                 </div>

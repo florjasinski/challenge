@@ -1,5 +1,8 @@
 <x-layout-register>
-<form method="POST" action="/contacts/{{ $contact->id }}" enctype="multipart/form-data">
+<section class="px-6 py-8">
+    <main class="max-w-4xl mx-auto mt-10 lg:mt-20 space-y-6">
+        <article class="bg-white shadow-lg rounded-lg p-8 lg:p-12 relative">
+<form method="POST" action="/api/contacts/{{ $contact->id }}" enctype="multipart/form-data">
         @csrf
         @method('PUT')
 
@@ -16,10 +19,14 @@
                 <label for="title" class="block text-sm font-medium text-gray-700">Title</label>
                 <input type="text" name="title" id="title" value="{{ $contact->title }}" class="mt-1 block w-full bg-purple-100 border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
             </div>
+            <div class="flex items-center space-x-4">
             <div>
                 <label for="profile_picture" class="block text-sm font-medium text-gray-700">Profile Picture</label>
-                <input type="file" name="profile_picture" id="profile_picture" class="mt-1 block w-full bg-purple-100 border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
+                <input type="file" name="profile_picture" id="profile_picture" value="{{ Str::startsWith($contact->profile_picture, 'http') ? $contact->profile_picture : asset('storage/' . $contact->profile_picture) }}" class="mt-1 block w-full bg-purple-100 border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
             </div>
+            </div>
+            
+
             <div>
                 <label for="address" class="block text-sm font-medium text-gray-700">Address</label>
                 <input type="text" name="address" id="address" value="{{ $contact->address }}" class="mt-1 block w-full bg-purple-100 border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
@@ -48,4 +55,7 @@
             </div>
         @endif
     </form>
+</article>
+</main>
+</section>
 </x-layout-register>

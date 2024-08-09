@@ -2,7 +2,7 @@
     <section class="px-6 py-8">
         <main class="max-w-4xl mx-auto mt-10 lg:mt-20 space-y-6">
             <article class="bg-white shadow-lg rounded-lg p-8 lg:p-12 relative">
-                <form method="POST" action="/admin/contacts" enctype="multipart/form-data">
+                <form method="POST" action="/api/contacts" enctype="multipart/form-data">
                     @csrf
                     
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-6">

@@ -1,5 +1,5 @@
 <x-layout-register>
-    <form method="POST" action="/admin/posts/{{ $post->id }}" enctype="multipart/form-data">
+    <form method="POST" action="/api/posts/{{ $post->id }}" enctype="multipart/form-data">
         @csrf
         @method('PATCH')
 
