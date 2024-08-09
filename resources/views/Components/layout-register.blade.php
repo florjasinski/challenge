@@ -22,7 +22,7 @@
 <body style="font-family: 'Open Sans', sans-serif;">
 <section class="px-6 py-8 min-h-screen flex flex-col"> 
     <div id="app"> 
-        <nav class="flex justify-between items-center mb-12 bg-pink-200 p-4 rounded-lg">
+        <nav class="flex justify-between items-center mb-12 bg-pink-50 p-4 rounded-lg">
             <div>
                 <a>
                 <img :src="image" alt="logo" class="h-12">

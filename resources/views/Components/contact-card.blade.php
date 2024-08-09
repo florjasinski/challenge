@@ -1,7 +1,7 @@
 <!-- resources/views/components/contact-card.blade.php -->
 @props(['contact'])
 
-<article class="transition-colors duration-300 hover:bg-purple-100 bg-purple-50 rounded-xl p-4 flex items-center justify-between space-x-4">
+<article class="transition-colors duration-300 hover:bg-pink-100 bg-pink-50 rounded-xl p-4 flex items-center justify-between space-x-4">
     <div class="flex items-center space-x-4">
     <img src="{{ Str::startsWith($contact->profile_picture, 'http') ? $contact->profile_picture : asset('storage/' . $contact->profile_picture) }}" 
      alt="Profile picture of {{ $contact->name }}" 

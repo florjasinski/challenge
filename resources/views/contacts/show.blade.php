@@ -1,10 +1,14 @@
 <x-layout-register>
+    <div id = "app" >     
     <section class="px-6 py-8">
         <main class="max-w-3xl mx-auto mt-10 lg:mt-20 space-y-6">
-            <!-- Back to Contacts button -->
-            <div class="flex justify-start mb-4">
+
+        <article class="bg-gray-100 shadow-lg rounded-lg p-8 lg:p-12 relative">
+            
+            
+            <div class="absolute top-4 left-4 flex space-x-4">
                 <a href="/api/contacts"
-                    class="transition-colors duration-300 relative inline-flex items-center text-lg hover:text-blue-500">
+                    class="transition-colors duration-300 relative inline-flex items-center text-lg hover:text-black-500">
                     <svg width="22" height="22" viewBox="0 0 22 22" class="mr-2">
                         <g fill="none" fill-rule="evenodd">
                             <path stroke="#000" stroke-opacity=".012" stroke-width=".5" d="M21 1v20.16H.84V1z"></path>
@@ -16,16 +20,22 @@
                 </a>
             </div>
 
-            <article class="bg-white shadow-lg rounded-lg p-8 lg:p-12 relative">
+            
                
-                <div class="absolute top-4 right-4 flex space-x-2">
-                    <a href="/api/contacts/{{ $contact->id }}/edit" class="bg-blue-500 text-white px-3 py-1 rounded-full hover:bg-blue-600">
-                        Edit
-                    </a>
-                    <a href="/api/contacts/{{ $contact->id }}" class="bg-green-500 text-white px-3 py-1 rounded-full hover:bg-green-600">
-                        Add
-                    </a>
-                </div>
+            <div class="absolute top-4 right-4 flex space-x-4">
+                <a href="/api/contacts/{{ $contact->id }}/edit" class="hover:text-black-600">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-black-500 hover:text-black-600" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M12 20h9M16.5 3a1.5 1.5 0 112.121 2.121l-9 9a1.5 1.5 0 01-.617.368l-3 1a1 1 0 01-1.263-1.263l1-3a1.5 1.5 0 01.368-.617l9-9z" />
+                    </svg>
+                </a>
+                <a href="/api/contacts/{{ $contact->id }}" class="hover:text-black-600">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-black-500 hover:text-black-600" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M12 4v16m8-8H4" />
+                    </svg>
+                </a>
+            </div>
+
+
 
                 <div class="text-center">
                     <div class="relative inline-block">
@@ -40,19 +50,20 @@
 
                 <div class="mt-8 space-y-4 text-center">
                     <div class="text-sm font-medium text-gray-700">
-                        <span class="block">Address</span>
+                        <span class="block">[[address]]</span>
                         <span>{{ $contact->address }}</span>
                     </div>
                     <div class="text-sm font-medium text-gray-700">
-                        <span class="block">Phone</span>
+                        <span class="block">[[phone]]</span>
                         <span>{{ $contact->phone }}</span>
                     </div>
                     <div class="text-sm font-medium text-gray-700">
-                        <span class="block">Email</span>
+                        <span class="block">[[email]]</span>
                         <span>{{ $contact->email }}</span>
                     </div>
                 </div>
             </article>
         </main>
     </section>
+    </div>
 </x-layout-register>
