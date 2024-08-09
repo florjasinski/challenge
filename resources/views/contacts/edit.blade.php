@@ -22,8 +22,10 @@
             <div class="flex items-center space-x-4">
             <div>
                 <label for="profile_picture" class="block text-sm font-medium text-gray-700">Profile Picture</label>
-                <input type="file" name="profile_picture" id="profile_picture" value="{{ Str::startsWith($contact->profile_picture, 'http') ? $contact->profile_picture : asset('storage/' . $contact->profile_picture) }}" class="mt-1 block w-full bg-purple-100 border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
+                <input type="file" name="profile_picture" id="profile_picture" class="mt-1 block w-full bg-purple-100 border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
+                
             </div>
+
             </div>
             
 

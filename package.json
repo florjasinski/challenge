@@ -7,15 +7,15 @@
     },
     "devDependencies": {
         "axios": "^1.6.4",
-        "laravel-vite-plugin": "^1.0",
-        "vite": "^4.0"
+        "laravel-vite-plugin": "^1.0.5",
+        "vite": "^4.5.3"
     },
     "dependencies": {
         "@vee-validate/i18n": "^4.13.2",
         "@vee-validate/rules": "^4.13.2",
         "@vitejs/plugin-vue": "^4.0",
         "vee-validate": "^4.13.2",
-        "vue": "^3.2",
+        "vue": "^3.4.37",
         "yup": "^1.4.0"
     }
 }

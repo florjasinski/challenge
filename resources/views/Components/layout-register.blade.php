@@ -13,6 +13,8 @@
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
     <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
     <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+
     
     <title>BuildOnline</title>
     
@@ -42,7 +44,7 @@
         </div>
 
     </section>
-
+    @vite('public/js/app.js')
     
 </body>
 </html>

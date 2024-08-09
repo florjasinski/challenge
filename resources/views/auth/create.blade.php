@@ -27,43 +27,17 @@
                     </button>
                 </div>
 
-                <div v-if="hasErrors" class="mt-4">
+                <div>
+                @if ($errors->any())
                     <ul>
-                        <li v-for="error in errors" :key="error" class="text-red-500">[[ error ]] </li>
+                        @foreach ($errors->all() as $error)
+                            <li class="text-red-500">[[ errors ]]</li>
+                        @endforeach
                     </ul>
-                </div>
+                @endif
+            </div>
             </form>
         </div>
     </div>
 </x-layout-register>
 
-
-<script>
-        const app = Vue.createApp({
-            delimiters: ['[[', ']]'], 
-            data() {
-                return {
-                    email: 'Email',
-                    password: 'Password',
-                    login: 'Login',
-                    welcome: 'Welcome',
-                    notes: 'Notes',
-                    contacts: 'Contacts',
-                    signin: 'Sign In',
-                    image : '/images/logoBuild.jpg',
-                    errors: [
-                        @foreach ($errors->all() as $error)
-                            '{{ $error }}',
-                        @endforeach
-                    ]
-                }
-            },
-            computed: {
-                hasErrors() {
-                    return this.errors.length > 0;
-                }
-            }
-        });
-
-        app.mount('#app');
-</script>
