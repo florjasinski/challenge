@@ -1,5 +1,6 @@
 <!-- resources/views/contacts/index.blade.php -->
 <x-layout-register>
+    <div id = "app">
     <div class="max-w-6xl mx-auto py-10 space-y-8">
         <x-_posts-header :contacts="$contacts"/>
 
@@ -10,5 +11,6 @@
         </div>
 
         
+    </div>
     </div>
 </x-layout-register>

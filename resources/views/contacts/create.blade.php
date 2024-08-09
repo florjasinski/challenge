@@ -1,4 +1,5 @@
 <x-layout-register>
+    <div id = "app">
     <section class="px-6 py-8">
         <main class="max-w-4xl mx-auto mt-10 lg:mt-20 space-y-6">
             <article class="bg-white shadow-lg rounded-lg p-8 lg:p-12 relative">
@@ -7,40 +8,45 @@
                     
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                         <div>
-                            <label for="name" class="block text-sm font-medium text-gray-700">Name</label>
+                        <label for="name" class="block text-sm font-medium text-gray-700"> [[ name ]] </label>
+
                             <input type="text" name="name" id="name" value="{{ $contact->name }}" class="mt-1 block w-full bg-purple-100 border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
                         </div>
                         <div>
-                            <label for="surname" class="block text-sm font-medium text-gray-700">Surname</label>
+                            <label for="surname" class="block text-sm font-medium text-gray-700">[[ surname ]]</label>
                             <input type="text" name="surname" id="surname" value="{{ $contact->surname }}" class="mt-1 block w-full bg-purple-100 border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
                         </div>
                         <div>
-                            <label for="title" class="block text-sm font-medium text-gray-700">Title</label>
+                            <label for="title" class="block text-sm font-medium text-gray-700"> [[ title ]] </label>
                             <input type="text" name="title" id="title" value="{{ $contact->title }}" class="mt-1 block w-full bg-purple-100 border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
                         </div>
                         <div>
-                            <label for="profile_picture" class="block text-sm font-medium text-gray-700">Profile Picture</label>
+                            <label for="profile_picture" class="block text-sm font-medium text-gray-700">[[ profile ]]</label>
                             <input type="file" name="profile_picture" id="profile_picture" class="mt-1 block w-full bg-purple-100 border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
                             @if ($contact->profile_picture)
                                 <img src="{{ asset('storage/' . $contact->profile_picture) }}" alt="Profile Picture" class="mt-4 w-32 h-32 rounded-full">
                             @endif
                         </div>
                         <div>
-                            <label for="address" class="block text-sm font-medium text-gray-700">Address</label>
+                            <label for="address" class="block text-sm font-medium text-gray-700">[[ address ]]</label>
                             <input type="text" name="address" id="address" value="{{ $contact->address }}" class="mt-1 block w-full bg-purple-100 border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
                         </div>
                         <div>
-                            <label for="phone" class="block text-sm font-medium text-gray-700">Phone</label>
+                            <label for="phone" class="block text-sm font-medium text-gray-700">[[phone]]</label>
                             <input type="text" name="phone" id="phone" value="{{ $contact->phone }}" class="mt-1 block w-full bg-purple-100 border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
                         </div>
                         <div class="col-span-2">
-                            <label for="email" class="block text-sm font-medium text-gray-700">Email</label>
+                            <label for="email" class="block text-sm font-medium text-gray-700">[[email]]</label>
                             <input type="email" name="email" id="email" value="{{ $contact->email }}" class="mt-1 block w-full bg-purple-100 border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
                         </div>
                     </div>
 
                     <div class="flex justify-center mt-8">
-                        <button type="submit" class="bg-purple-500 text-white px-6 py-3 rounded-full shadow-md hover:bg-purple-600">Save</button>
+                        
+                        <button type="submit" :disabled="loading" class="bg-purple-500 text-white px-6 py-3 rounded-full shadow-md hover:bg-purple-600">
+                        [[ loading ? 'Saving...' : 'Save' ]]
+                        </button>
+
                     </div>
 
                     @if ($errors->any())
@@ -56,4 +62,5 @@
             </article>
         </main>
     </section>
+    </div>
 </x-layout-register>
