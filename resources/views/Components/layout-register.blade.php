@@ -14,6 +14,8 @@
     <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
     <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+    
+
 
     
     <title>BuildOnline</title>
@@ -33,7 +35,7 @@
                 <a class="text-xs font-bold uppercase text-black-700"> [[ notes ]] </a>
             </div>
             <div class="space-x-4">
-                <a href="/" class="text-xs font-bold uppercase text-gray-700"> [[ login ]] </a>
+                <a href="/api/login" class="text-xs font-bold uppercase text-gray-700"> [[ login ]] </a>
                 <a class="bg-purple-500 rounded-full text-xs font-semibold text-white uppercase py-3 px-5">
                     [[ signin ]]
                 </a>

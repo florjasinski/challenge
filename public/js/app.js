@@ -1,6 +1,5 @@
 import { createApp } from 'vue';
-import {createPinia } from 'pinia';
-    
+import { createPinia } from 'pinia';
 
 const app = createApp({
     delimiters: ['[[', ']]'], 
@@ -31,23 +30,25 @@ const app = createApp({
             this.loading = false;
         },
         populateErrors() {
-           
             this.errors = 'The provided credentials do not match our records.';
-        }
-        
-    },
+        },
     computed: {
         hasErrors() {
             return this.errors.length > 0;
         }
     },
     mounted() {
-        // Populate the errors array
         this.populateErrors();
+        
+         
     },
+}
 });
 
 
-app.use(createPinia());
 
+
+app.use(createPinia());
 app.mount('#app');
+
+
