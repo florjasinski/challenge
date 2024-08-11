@@ -1,54 +1,29 @@
+
 import { createApp } from 'vue';
 import { createPinia } from 'pinia';
+import { useAuthStore } from './stores/authStore';
+
 
 const app = createApp({
     delimiters: ['[[', ']]'], 
-    data() {
+    setup() {
+        const authStore = useAuthStore(); 
+
         return {
             email: 'Email',
-            name: 'Name',
-            surname : 'Surname',
-            title : 'Title',
-            profile : 'Profile Picture',
-            address : 'Address',
-            phone : 'Phone',
             password: 'Password',
-            contact : 'Contact',
             login: 'Login',
             welcome: 'Welcome',
             notes: 'Notes',
-            contacts: 'Contacts',
+            contact: 'Contacts',
             signin: 'Sign In',
-            image : '/images/logoBuild.jpg',
-            loading : false,
-            errors: []
+            image: '/images/logoBuild.jpg',
+            errors: authStore.errors 
         }
     },
-    methods: {
-        submitForm() {
-            this.loading = true;
-            this.loading = false;
-        },
-        populateErrors() {
-            this.errors = 'The provided credentials do not match our records.';
-        },
-    computed: {
-        hasErrors() {
-            return this.errors.length > 0;
-        }
-    },
-    mounted() {
-        this.populateErrors();
-        
-         
-    },
-}
 });
 
+const pinia = createPinia();
 
-
-
-app.use(createPinia());
+app.use(pinia);
 app.mount('#app');
-
-
