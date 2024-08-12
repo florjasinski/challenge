@@ -1,13 +1,17 @@
-
 import { createApp } from 'vue';
 import { createPinia } from 'pinia';
 import { useAuthStore } from './stores/authStore';
-
+import { useContactStore } from './stores/contactStore';
 
 const app = createApp({
     delimiters: ['[[', ']]'], 
     setup() {
         const authStore = useAuthStore(); 
+        const contactStore = useContactStore();
+
+        const handleSubmit = () => {
+            contactStore.validateAndSaveContact();
+        };
 
         return {
             email: 'Email',
@@ -15,10 +19,20 @@ const app = createApp({
             login: 'Login',
             welcome: 'Welcome',
             notes: 'Notes',
-            contact: 'Contacts',
+            contactLayout: 'Contacts',
             signin: 'Sign In',
+            name: 'Name',
+            phone: 'Phone',
+            address: 'Address',
+            surname: 'Surname',
+            profile : 'Profile Picture',
+            title: 'Title',
             image: '/images/logoBuild.jpg',
-            errors: authStore.errors 
+            UserErrors: authStore.errors,
+            contact: contactStore.contact,
+            fieldErrors: contactStore.errors.fields,
+            hasFieldErrors: contactStore.hasFieldErrors,
+            handleSubmit,
         }
     },
 });

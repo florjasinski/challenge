@@ -31,7 +31,7 @@
                 </a>
             </div>
             <div class="flex-grow flex justify-center space-x-4">
-            <a class="text-xs font-bold uppercase text-gray-700"> [[ contact ]] </a>
+            <a class="text-xs font-bold uppercase text-gray-700"> [[ contactLayout ]] </a>
                 <a class="text-xs font-bold uppercase text-black-700"> [[ notes ]] </a>
             </div>
             <div class="space-x-4">

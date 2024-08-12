@@ -3,7 +3,10 @@ import { defineStore } from 'pinia';
 
 export const useAuthStore = defineStore('authStore', {
   state: () => ({
-    user: null,
+    user: {
+      email: '',
+      password: '' 
+    },
     errors: "The provided credentials do not match our records."
   }),
   actions: {

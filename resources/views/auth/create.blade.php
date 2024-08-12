@@ -29,7 +29,7 @@
                         @if ($errors->any())
                             <ul>
                                 @foreach ($errors->all() as $error)
-                                    <li class="text-red-500">[[ errors ]]</li>
+                                    <li class="text-red-500">[[ UserErrors ]]</li>
                                 @endforeach
                             </ul>
                         @endif
