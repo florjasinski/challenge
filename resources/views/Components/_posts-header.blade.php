@@ -2,7 +2,7 @@
 @props(['categories', 'currentCategory'])
 
 <header class="max-w-full mx-auto mt-5 px-6">
-    <h2 class="text-2xl font-bold mb-2 text-left">[[ contacts ]]</h2> <!-- Ajuste de tamaño de fuente y margen inferior -->
+    <h2 class="text-2xl font-bold mb-2 text-left">[[ contactLayout ]]</h2> <!-- Ajuste de tamaño de fuente y margen inferior -->
 
     <div class="relative max-w-full mx-auto flex items-center bg-gray-200 rounded-lg shadow-lg">
         <form method="GET" action="/api/contacts" class="w-full flex items-center">

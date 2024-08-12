@@ -39,13 +39,13 @@ class ContactController extends Controller
     public function store(Request $request)
     {
         $attributes = $request->validate([
-            'name' => 'required|string',
-            'surname' => 'required|string',
+            'name' => 'required',
+            'surname' => 'required',
             'title' => 'required',
             'profile_picture' => 'sometimes|image',
-            'address' => 'required|string|max:255',
-            'phone' => 'required|digits_between:7,15',
-            'email' => 'required|email|unique:contacts,email',
+            'address' => 'required',
+            'phone' => 'required',
+            'email' => 'required|email',
         ]);
 
         $attributes['user_id'] = auth()->id();
@@ -69,13 +69,13 @@ class ContactController extends Controller
 public function update(Request $request, Contact $contact)
 {
     $attributes = $request->validate([
-        'name' => 'required|string',
-        'surname' => 'required|string',
-        'title' => 'required',
-        'profile_picture' => 'sometimes|image',
-        'address' => 'required|string|max:255',
-        'phone' => 'required|digits_between:7,15',
-        'email' => 'required|email|unique:contacts,email,' . $contact->id,
+            'name' => 'required',
+            'surname' => 'required',
+            'title' => 'required',
+            'profile_picture' => 'sometimes|image',
+            'address' => 'required',
+            'phone' => 'required',
+            'email' => 'required|email',
     ]);
 
 
