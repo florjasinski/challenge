@@ -19,11 +19,16 @@ Route::post('/api/user', [SessionController::class, 'store']);
 
 
 
+Route::get('/api/contacts', [ContactController::class, 'index'])->middleware(\App\Http\Middleware\AdminMiddleware::class)->name('contacts.index');
+
+
+
+
 Route::middleware(['auth:sanctum'])->group(function () {
     Route::get('/api/contacts', [ContactController::class, 'index'])->name('contacts.index');
-    Route::get('/api/contacts/{contact}', [ContactController::class, 'show']);
-    Route::get('/api/contacts/create', [ContactController::class, 'create']);
-    Route::post('/api/contacts', [ContactController::class, 'store']);
+    Route::get('contacts/{contact:id}', [ContactController::class, 'show']);
+    Route::get('api/contacts/{contact}', [ContactController::class, 'create']);
+    Route::post('api/contacts', [ContactController::class, 'store']);
     Route::get('/api/contacts/{contact}/edit', [ContactController::class, 'edit']);
     Route::put('/api/contacts/{contact}', [ContactController::class, 'update']);
 });
