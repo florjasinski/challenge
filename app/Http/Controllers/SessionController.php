@@ -19,38 +19,31 @@ class SessionController extends Controller
     }
 
     public function store(Request $request)
-{
-    $attributes = $request->validate([
-        'email' => 'required|email',
-        'password' => 'required',
-    ]);
-
-    if (! auth()->attempt($attributes)) {
-        return redirect()->back()->withErrors([
-            'email' => 'The provided credentials do not match our records.',
+    {
+        $attributes = $request->validate([
+            'email' => 'required|email',
+            'password' => 'required',
         ]);
-    }
 
-    session()->regenerate();
+       
+        if (!auth()->attempt($attributes)) {
+            
+            return response()->json(['success' => false, 'message' => 'Invalid credentials'], 401);
+        }
 
+        session()->regenerate();
 
-    $user = Auth::user();
-    $token = $user->createToken('auth_token')->plainTextToken;
+        $user = Auth::user();
+        $token = $user->createToken('auth_token')->plainTextToken;
 
-    
-    if ($request->expectsJson()) {
         return response()->json([
+            'success' => true,
             'access_token' => $token,
             'token_type' => 'Bearer',
-            'message' => 'Login successful',
         ]);
     }
 
-    return redirect('/api/contacts');
 }
-
-}
-
 
 
 

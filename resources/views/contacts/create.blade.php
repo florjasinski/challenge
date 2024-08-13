@@ -1,3 +1,5 @@
+
+
 <x-layout-register>
     <div id="app">
         <section class="px-6 py-8 bg-white-100">
@@ -9,17 +11,17 @@
                         <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                             <div>
                                 <label for="name" class="block text-sm font-medium text-gray-700">[[ name ]]</label>
-                                <input type="text" name="name" id="name"
+                                <input type="text" name="name" id="name" value="{{ old('name') }}"
                                     class="mt-1 block w-full bg-white border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
                             </div>
                             <div>
                                 <label for="surname" class="block text-sm font-medium text-gray-700">[[ surname ]]</label>
-                                <input type="text" name="surname" id="surname"
+                                <input type="text" name="surname" id="surname" value="{{ old('surname') }}"
                                     class="mt-1 block w-full bg-white border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
                             </div>
                             <div>
                                 <label for="title" class="block text-sm font-medium text-gray-700">[[ title ]]</label>
-                                <input type="text" name="title" id="title"
+                                <input type="text" name="title" id="title" value="{{ old('title') }}"
                                     class="mt-1 block w-full bg-white border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
                             </div>
                             <div>
@@ -29,21 +31,20 @@
                             </div>
                             <div>
                                 <label for="address" class="block text-sm font-medium text-gray-700">[[ address ]]</label>
-                                <input type="text" name="address" id="address"
+                                <input type="text" name="address" id="address" value="{{ old('address') }}"
                                     class="mt-1 block w-full bg-white border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
                             </div>
-                            
                             <div>
                                 <label for="phone" class="block text-sm font-medium text-gray-700">[[ phone ]]</label>
-                                <input type="text" name="phone" id="phone"
+                                <input type="text" name="phone" id="phone" value="{{ old('phone') }}"
                                     class="mt-1 block w-full bg-white border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
                             </div>
 
-                            <div id="map" style="height: 100px; width: 100%;"></div> 
+                            <div id="map" style="height: 100px; width: 100%;"></div>
 
                             <div>
                                 <label for="email" class="block text-sm font-medium text-gray-700">[[ email ]]</label>
-                                <input type="email" name="email" id="email"
+                                <input type="email" name="email" id="email" value="{{ old('email') }}"
                                     class="mt-1 block w-full bg-white border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
                             </div>
                         </div>
@@ -58,9 +59,9 @@
                         <div>
                         @if ($errors->any())
                             <ul>
-                                
-                                <li class="text-red-500">[[ fieldErrors ]]</li>
-                                
+                                @foreach ($errors->all() as $error)
+                                    <li class="text-red-500">{{ $error }}</li>
+                                @endforeach
                             </ul>
                         @endif
                     </div>
@@ -69,7 +70,6 @@
             </main>
         </section>
     </div>
-
     <script>
         function initializeAutocomplete() {
             const input = document.getElementById('address');

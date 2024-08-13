@@ -18,12 +18,6 @@ Route::post('/api/user', [SessionController::class, 'store']);
 
 
 
-
-Route::get('/api/contacts', [ContactController::class, 'index'])->middleware(\App\Http\Middleware\AdminMiddleware::class)->name('contacts.index');
-
-
-
-
 Route::middleware(['auth:sanctum'])->group(function () {
     Route::get('/api/contacts', [ContactController::class, 'index'])->name('contacts.index');
     Route::get('contacts/{contact:id}', [ContactController::class, 'show']);
