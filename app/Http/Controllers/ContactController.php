@@ -56,15 +56,18 @@ class ContactController extends Controller
 
         Contact::create($attributes);
 
-        
+            
+        return response()->json(['success' => true]);
 
-        return redirect()->route('contacts.index');
+        
     }
 
+
+
     public function edit(Contact $contact)
-{
-    return view('contacts.edit', ['contact' => $contact]);
-}
+    {
+        return view('contacts.edit', ['contact' => $contact]);
+    }
 
 public function update(Request $request, Contact $contact)
 {

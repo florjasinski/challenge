@@ -1,51 +1,65 @@
 
-
 <x-layout-register>
     <div id="app">
         <section class="px-6 py-8 bg-white-100">
             <main class="max-w-4xl mx-auto mt-10 lg:mt-20 space-y-6">
                 <article class="bg-gray-100 shadow-lg rounded-lg p-8 lg:p-12 relative">
-                    <form method="POST" action="/api/contacts" enctype="multipart/form-data">
-                        @csrf
+                    <Form @submit.prevent="handleSubmitContact">
 
                         <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                             <div>
-                                <label for="name" class="block text-sm font-medium text-gray-700">[[ name ]]</label>
-                                <input type="text" name="name" id="name" value="{{ old('name') }}"
+                                <label for="name" class="block text-sm font-medium text-gray-700">[[ nameInput ]]</label>
+                                <Field id="name" name="name" v-model="name" value="{{ old('name') }}"
                                     class="mt-1 block w-full bg-white border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
+                                </Field>
+                            </div>
+
+                            <div>
+                                <label for="surname" class="block text-sm font-medium text-gray-700">[[ surnameInput ]]</label>
+                                <Field id="surname" name="surname" v-model="surname" value="{{ old('surname') }}"
+                                    class="mt-1 block w-full bg-white border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
+                                </Field>
                             </div>
                             <div>
-                                <label for="surname" class="block text-sm font-medium text-gray-700">[[ surname ]]</label>
-                                <input type="text" name="surname" id="surname" value="{{ old('surname') }}"
+                                <label for="title" class="block text-sm font-medium text-gray-700">[[ titleInput ]]</label>
+                                <Field id="title" name="title" v-model="title" value="{{ old('title') }}"
                                     class="mt-1 block w-full bg-white border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
+                                </Field>
+                            </div>
+                             
+                            <div>
+                                <label for="profile_picture" class="block text-sm font-medium text-gray-700">[[ profileInput ]]</label>
+                                <Field id="profile_picture" name="profile_picture" v-model="profile_picture" type="file"
+                                    class="mt-1 block w-full bg-white border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
+                                </Field>
                             </div>
                             <div>
-                                <label for="title" class="block text-sm font-medium text-gray-700">[[ title ]]</label>
-                                <input type="text" name="title" id="title" value="{{ old('title') }}"
+                                <label for="address" class="block text-sm font-medium text-gray-700">[[ addressInput ]]</label>
+                                <Field id="address" name="address" v-model="address" value="{{ old('address') }}"
                                     class="mt-1 block w-full bg-white border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
+                                </Field>
                             </div>
                             <div>
-                                <label for="profile_picture" class="block text-sm font-medium text-gray-700">[[ profile ]]</label>
-                                <input type="file" name="profile_picture" id="profile_picture"
+                                <label for="phone" class="block text-sm font-medium text-gray-700">[[ phoneInput ]]</label>
+                                <Field id="phone" name="phone" v-model="phone" value="{{ old('phone') }}"
                                     class="mt-1 block w-full bg-white border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
+                                </Field>
                             </div>
-                            <div>
-                                <label for="address" class="block text-sm font-medium text-gray-700">[[ address ]]</label>
-                                <input type="text" name="address" id="address" value="{{ old('address') }}"
-                                    class="mt-1 block w-full bg-white border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
-                            </div>
-                            <div>
-                                <label for="phone" class="block text-sm font-medium text-gray-700">[[ phone ]]</label>
-                                <input type="text" name="phone" id="phone" value="{{ old('phone') }}"
-                                    class="mt-1 block w-full bg-white border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
-                            </div>
+
+                            
+
+                            
+
+
+    
 
                             <div id="map" style="height: 100px; width: 100%;"></div>
 
                             <div>
-                                <label for="email" class="block text-sm font-medium text-gray-700">[[ email ]]</label>
-                                <input type="email" name="email" id="email" value="{{ old('email') }}"
+                                <label for="email" class="block text-sm font-medium text-gray-700">[[ emailInput ]]</label>
+                                <Field id="email" name="email" v-model="email" value = "{{ old('email') }}"
                                     class="mt-1 block w-full bg-white border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
+                                </Field>
                             </div>
                         </div>
 
@@ -56,16 +70,16 @@
                             </button>
                         </div>
 
-                        <div>
-                        @if ($errors->any())
-                            <ul>
-                                @foreach ($errors->all() as $error)
-                                    <li class="text-red-500">{{ $error }}</li>
-                                @endforeach
-                            </ul>
-                        @endif
-                    </div>
-                    </form>
+                        <div v-if="errorMessages.email" class="text-red-500">[[ errorMessages.email ]]</div>
+                        <div v-if="errorMessages.name" class="text-red-500">[[ errorMessages.name ]]</div>
+                        <div v-if="errorMessages.surname" class="text-red-500">[[ errorMessages.surname ]]</div>
+                        <div v-if="errorMessages.title" class="text-red-500">[[ errorMessages.title ]]</div>
+                        <div v-if="errorMessages.address" class="text-red-500">[[ errorMessages.address ]]</div>
+                        <div v-if="errorMessages.phone" class="text-red-500">[[ errorMessages.phone ]]</div>
+                        <div v-if="errorMessages.profile_picture" class="text-red-500">[[ errorMessages.profile_picture ]]</div>
+
+                        
+                    </Form>
                 </article>
             </main>
         </section>
