@@ -22,13 +22,20 @@ class SessionController extends Controller
     {
         $attributes = $request->validate([
             'email' => 'required|email',
-            'password' => 'required',
+            'password' => 'required|min:6',
         ]);
 
        
+        
         if (!auth()->attempt($attributes)) {
             
-            return response()->json(['success' => false, 'message' => 'Invalid credentials'], 401);
+            return response()->json([
+                'success' => false,
+                'errors' => [
+                    'email' => 'Incorrect email.',
+                    'password' => 'Incorrect password.', 
+                ]
+            ], 401);
         }
 
         session()->regenerate();

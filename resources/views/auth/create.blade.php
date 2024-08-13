@@ -24,14 +24,18 @@
                     [[ login ]]
                 </button>
 
-                <ErrorMessage name="email" class="text-red-500" />
-
-                <ErrorMessage name="password" class="text-red-500" />
+                
 
                     <div id="error-message" class="hidden bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded" role="alert">
                         <span class="block sm:inline">Invalid credentials</span>
                         
                     </div>
+
+                    <div id="email-error" class="hidden text-red-500"></div>
+
+                    <div id="password-error" class="hidden text-red-500"></div>
+
+
 
                     
             </Form>
