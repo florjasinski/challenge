@@ -1,6 +1,3 @@
-<<<<<<< HEAD
-# challenge
-=======
 ## Contacts Management Platform
 
 This is a contact management platform that allows users to store and manage contact information.
@@ -85,4 +82,4 @@ During the development process, I encountered challenges with integrating Nuxt.j
 When developing the contact editing feature, I encountered a issue with using the PUT method in conjunction with VeeValidate for form validation. The problem was particularly challenging because VeeValidate's internal form submission handling is designed primarily for POST requests.
 VeeValidate assumes form submissions are done via POST, which led to issues when trying to perform a PUT request for updating a contact. This conflict caused the validation errors not to display correctly, and the form submission process was interrupted.
 
->>>>>>> develop
+
