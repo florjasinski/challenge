@@ -46,12 +46,6 @@
                                 </Field>
                             </div>
 
-                            
-
-                            
-
-
-    
 
                             <div id="map" style="height: 100px; width: 100%;"></div>
 
@@ -70,13 +64,41 @@
                             </button>
                         </div>
 
-                        <div v-if="errorMessages.email" class="text-red-500">[[ errorMessages.email ]]</div>
-                        <div v-if="errorMessages.name" class="text-red-500">[[ errorMessages.name ]]</div>
-                        <div v-if="errorMessages.surname" class="text-red-500">[[ errorMessages.surname ]]</div>
-                        <div v-if="errorMessages.title" class="text-red-500">[[ errorMessages.title ]]</div>
-                        <div v-if="errorMessages.address" class="text-red-500">[[ errorMessages.address ]]</div>
-                        <div v-if="errorMessages.phone" class="text-red-500">[[ errorMessages.phone ]]</div>
-                        <div v-if="errorMessages.profile_picture" class="text-red-500">[[ errorMessages.profile_picture ]]</div>
+                        
+
+                        <div v-if="contactErrors.name && contactErrors.name.length" class="text-red-500">
+                            <div v-for="error in contactErrors.name" :key="error">[[ error ]]</div>
+                        </div>
+
+
+                        <div v-if="contactErrors.phone && contactErrors.phone.length" class="text-red-500">
+                            <div v-for="error in contactErrors.phone" :key="error">[[ error ]]</div>
+                        </div>
+
+                        <div v-if="contactErrors.address && contactErrors.address.length" class="text-red-500">
+                            <div v-for="error in contactErrors.address" :key="error">[[ error ]]</div>
+                        </div>
+
+                        <div v-if="contactErrors.profile_picture && contactErrors.profile_picture.length" class="text-red-500">
+                            <div v-for="error in contactErrors.profile_picture" :key="error">[[ error ]]</div>
+                        </div>
+
+                        <div v-if="contactErrors.title && contactErrors.title.length" class="text-red-500">
+                            <div v-for="error in contactErrors.title" :key="error">[[ error ]]</div>
+
+                        </div>
+
+                        <div v-if="contactErrors.email && contactErrors.email.length" class="text-red-500">
+                            <div v-for="error in contactErrors.email" :key="error">[[ error ]]</div>
+                        </div>
+
+                        <div v-if="contactErrors.surname && contactErrors.surname.length" class="text-red-500">
+                            <div v-for="error in contactErrors.surname" :key="error">[[ error ]]</div>
+                        </div>  
+
+
+
+
 
                         
                     </Form>

@@ -5,6 +5,7 @@ import { required, min, digits} from '@vee-validate/rules';
 import axios from 'axios';
 import { createPinia } from 'pinia';
 import { useAuthStore } from './stores/authStore';
+import { useContactStore } from './stores/contactStore';
 
 const app = createApp({
     delimiters: ['[[', ']]'], 
@@ -21,6 +22,7 @@ const app = createApp({
 
         const pinia = createPinia();
         const authStore = useAuthStore(pinia);
+        const contactStore = useContactStore(pinia);
 
         const errorMessages = ref({
             email: '',
@@ -82,10 +84,12 @@ const app = createApp({
 
         const onSubmitContact = async (values) => {
             
-            Object.keys(errorMessages.value).forEach(key => errorMessages.value[key] = '');
+            contactStore.clearErrors();
+
+            
 
             if (!profile_picture.value) {
-                errorMessages.value.profile_picture = 'Profile picture is required.';
+                contactStore.setErrors({ profile_picture: ['Profile picture is required.'] });
                 return;
             }
         
@@ -110,16 +114,10 @@ const app = createApp({
             } catch (error) {
                 if (error.response && error.response.status === 422) {
                     if (error.response.data.errors) {
-                        errorMessages.value.name = error.response.data.errors.name ? error.response.data.errors.name.join(', ') : '';
-                        errorMessages.value.surname = error.response.data.errors.surname ? error.response.data.errors.surname.join(', ') : '';
-                        errorMessages.value.title = error.response.data.errors.title ? error.response.data.errors.title.join(', ') : '';
-                        errorMessages.value.address = error.response.data.errors.address ? error.response.data.errors.address.join(', ') : '';
-                        errorMessages.value.phone = error.response.data.errors.phone ? error.response.data.errors.phone.join(', ') : '';
-                        errorMessages.value.email = error.response.data.errors.email ? error.response.data.errors.email.join(', ') : '';
-                        errorMessages.value.profile_picture = error.response.data.errors.profile_picture ? error.response.data.errors.profile_picture.join(', ') : '';
+                        contactStore.setErrors(error.response.data.errors);
                     }
                 } else {
-                    errorMessages.value.general = 'An unexpected error occurred. Please try again.';
+                    contactStore.setErrors({ general: 'An unexpected error occurred. Please try again.' });
                 }
             }
         };
@@ -144,7 +142,8 @@ const app = createApp({
             addBtn: 'Add Contact',
             handleSubmit: handleSubmit(onSubmit),
             handleSubmitContact: handleSubmit(onSubmitContact),
-            errors:authStore.errors,
+            authErrors:authStore.errors,
+            contactErrors:contactStore.errors,
             isAuthenticated: authStore.isAuthenticated,
             errorMessages,
             profile_picture,

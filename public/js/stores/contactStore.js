@@ -1,4 +1,6 @@
+
 import { defineStore } from 'pinia';
+import { reactive } from 'vue';
 
 export const useContactStore = defineStore('contactStore', {
     state: () => ({
@@ -11,22 +13,26 @@ export const useContactStore = defineStore('contactStore', {
             title: '',
             profile_picture: '',
         },
-        errors: {
-            fields: "Please fill in all fields", 
-        },
+        errors: reactive({})
     }),
     actions: {
         setContact(contactData) {
             this.contact = contactData;
         },
-        setFieldErrors(errors) {
-            this.errors.fields = errors;
+        setErrors(errors) {
+            Object.keys(errors).forEach(key => {
+                this.errors[key] = errors[key];
+            });
         },
         clearErrors() {
-            this.errors = { fields: [] };
-        },
+            Object.keys(this.errors).forEach(key => {
+                this.errors[key] = [];
+            });
+        }
     },
     getters: {
-        hasFieldErrors: (state) => state.errors.fields.length > 0,
+        hasErrors(state) {
+            return Object.keys(state.errors).length > 0;
+        }
     }
 });

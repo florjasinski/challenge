@@ -29,17 +29,20 @@
 
 
                     
-                <div v-if="errors.general && errors.general.length" class="text-red-500 w-full">
-                    [[ errors.general ]]
+                
+
+                <div v-if="authErrors.general && authErrors.general.length" class="text-red-500 w-full">
+                    [[ authErrors.general ]]
                 </div>
 
-                <div v-if="errors.email && errors.email.length" class="text-red-500">
-                    <div v-for="error in errors.email" :key="error">[[ error ]]</div>
+
+
+                <div v-if="authErrors.email && authErrors.email.length" class="text-red-500">
+                    <div v-for="error in authErrors.email" :key="error">[[ error ]]</div>
                 </div>
 
-               
-                <div v-if="errors.password && errors.password.length" class="text-red-500">
-                    <div v-for="error in errors.password" :key="error">[[ error ]]</div>
+                <div v-if="authErrors.password && authErrors.password.length" class="text-red-500">
+                    <div v-for="error in authErrors.password" :key="error">[[ error ]]</div>
                 </div>
 
 
