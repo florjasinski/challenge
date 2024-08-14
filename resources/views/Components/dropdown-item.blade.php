@@ -1,4 +1,4 @@
-<!-- resources/views/components/dropdown-item.blade.php -->
+
 @props(['active' => false])
 
 @php

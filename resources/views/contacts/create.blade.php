@@ -96,11 +96,7 @@
                             <div v-for="error in contactErrors.surname" :key="error">[[ error ]]</div>
                         </div>  
 
-
-
-
-
-                        
+ 
                     </Form>
                 </article>
             </main>
@@ -110,7 +106,7 @@
         function initializeAutocomplete() {
             const input = document.getElementById('address');
             const autocomplete = new google.maps.places.Autocomplete(input, {
-                types: ['geocode'], // types set to geocode to prioritize addresses
+                types: ['geocode'], 
             });
 
             const map = new google.maps.Map(document.getElementById('map'), {
@@ -132,12 +128,12 @@
                     return;
                 }
 
-                // If the place has a geometry, then present it on a map.
+                
                 if (place.geometry.viewport) {
                     map.fitBounds(place.geometry.viewport);
                 } else {
                     map.setCenter(place.geometry.location);
-                    map.setZoom(17); // Zoom to the location
+                    map.setZoom(17); 
                 }
                 marker.setPosition(place.geometry.location);
                 marker.setVisible(true);

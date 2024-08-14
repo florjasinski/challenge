@@ -1,4 +1,4 @@
-<!-- resources/views/components/contact-card.blade.php -->
+
 @props(['contact'])
 
 <article class="transition-colors duration-300 hover:bg-pink-100 bg-pink-50 rounded-xl p-4 flex items-center justify-between space-x-4">

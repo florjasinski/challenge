@@ -42,6 +42,8 @@
                                 <input type="text" name="address" id="address" value="{{ $contact->address }}" 
                                     class="mt-1 block w-full bg-pink-100 border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
                             </div>
+
+                            
                             <div>
                                 <label for="phone" class="block text-sm font-medium text-gray-700">[[ phone ]]</label>
                                 <input type="text" name="phone" id="phone" value="{{ $contact->phone }}" 
@@ -77,4 +79,54 @@
             </main>
         </section>
     </div>
+    <script>
+        function initializeAutocomplete() {
+            const input = document.getElementById('address');
+            const autocomplete = new google.maps.places.Autocomplete(input, {
+                types: ['geocode'], 
+            });
+
+            const map = new google.maps.Map(document.getElementById('map'), {
+                center: { lat: -34.9011, lng: -56.1645 },
+                zoom: 13,
+                mapTypeId: 'roadmap'
+            });
+
+            const marker = new google.maps.Marker({
+                map: map,
+                anchorPoint: new google.maps.Point(0, -29)
+            });
+
+            autocomplete.addListener('place_changed', function () {
+                marker.setVisible(false);
+                const place = autocomplete.getPlace();
+                if (!place.geometry) {
+                    window.alert("No details available for input: '" + place.name + "'");
+                    return;
+                }
+
+                
+                if (place.geometry.viewport) {
+                    map.fitBounds(place.geometry.viewport);
+                } else {
+                    map.setCenter(place.geometry.location);
+                    map.setZoom(17); 
+                }
+                marker.setPosition(place.geometry.location);
+                marker.setVisible(true);
+            });
+        }
+
+        function loadGoogleMapsScript() {
+            const script = document.createElement('script');
+            script.src = `https://maps.googleapis.com/maps/api/js?key=AIzaSyBVc2w7AXS5GA4YZKfXtw17N9WAOnm7tzA&libraries=places&callback=initializeAutocomplete`;
+            script.async = true;
+            script.defer = true;
+            document.head.appendChild(script);
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            loadGoogleMapsScript();
+        });
+    </script>
 </x-layout-register>
