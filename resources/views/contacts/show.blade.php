@@ -42,11 +42,11 @@
 
                 <div class="text-center">
                     <div class="relative inline-block">
-                    <img src="{{ asset('storage/' . $contact->profile_picture) }}" 
-                            alt="Profile picture of {{ $contact->name }}" 
-                            class="rounded-full w-24 h-24 mr-6 border-4 border-purple-500">
-
+                    <img src="{{ Str::startsWith($contact->profile_picture, 'http') ? $contact->profile_picture : asset('storage/' . $contact->profile_picture) }}" 
+                    alt="Profile picture of {{ $contact->name }}" 
+                    class="rounded-full w-24 h-24 mr-6 border-4 border-purple-500">
                     </div>
+
                     <h1 class="mt-6 text-2xl font-bold text-gray-800">{{ $contact->name }}</h1>
                     <p class="text-gray-600">{{ $contact->title }}</p>
 

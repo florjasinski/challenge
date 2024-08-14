@@ -4,9 +4,9 @@
             <main class="max-w-4xl mx-auto mt-10 lg:mt-20 space-y-6">
                 <article class="bg-gray-100 shadow-lg rounded-lg p-8 lg:p-12 relative">
                     <div class="flex items-center mb-6">
-                        <img src="{{ asset('storage/' . $contact->profile_picture) }}" 
-                            alt="Profile picture of {{ $contact->name }}" 
-                            class="rounded-full w-24 h-24 mr-6 border-4 border-purple-500">
+                        <img src="{{ Str::startsWith($contact->profile_picture, 'http') ? $contact->profile_picture : asset('storage/' . $contact->profile_picture) }}" 
+                        alt="Profile picture of {{ $contact->name }}" 
+                        class="rounded-full w-24 h-24 mr-6 border-4 border-purple-500">
                         <div>
                             <h1 class="text-3xl font-bold text-gray-900">{{ $contact->name }}</h1>
                             <p class="text-gray-600">{{ $contact->title }}</p>
