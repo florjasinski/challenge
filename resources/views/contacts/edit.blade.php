@@ -61,15 +61,17 @@
                             </button>
                         </div>
 
-                        <div>
                         @if ($errors->any())
-                            <ul>
-                                
-                                <li class="text-red-500">[[ fieldErrors ]]</li>
-                                
-                            </ul>
+                            <div class="mt-4">
+                                <ul>
+                                    @foreach ($errors->all() as $error)
+                                        <li class="text-red-500">{{ $error }}</li>
+                                    @endforeach
+                                </ul>
+                            </div>
                         @endif
-                    </div>
+
+                        
                     </form>
                 </article>
             </main>

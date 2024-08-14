@@ -1,10 +1,7 @@
-Aquí tienes un ejemplo de cómo podrías ajustar el README para reflejar los problemas que encontraste con Nuxt.js y Pinia, y cómo decidiste proceder:
-
----
 
 ## Contacts Management Platform
 
-This is a contact management platform that allows users to store and manage contact information, including name, address, email, phone number, and profile picture. The platform also integrates with the Google Places API to allow users to search for addresses when creating or updating a contact.
+This is a contact management platform that allows users to store and manage contact information
 
 ## Prerequisites for the Challenge
 
@@ -25,21 +22,8 @@ Clone the repository from GitHub:
 git clone <repository-url>
 ```
 
-### 2. Configure the Environment
 
-Copy the `.env.example` file to `.env` and configure the environment variables as needed, especially those related to the database and external services like Google Places API.
-
-```bash
-cp .env.example .env
-```
-
-Generate the application key:
-
-```bash
-php artisan key:generate
-```
-
-### 3. Prepare the Database
+### 2. Prepare the Database
 
 Run the migrations and seeders to prepare the database:
 
@@ -49,7 +33,7 @@ php artisan migrate --seed
 
 This will create the necessary tables and pre-seed the users in the database.
 
-### 4. Start the Application
+### 3. Start the Application
 
 Start the Laravel development server:
 
@@ -63,15 +47,14 @@ In a separate terminal, start the Vue.js development server:
 npm run dev
 ```
 
-### 5. Configure the Frontend
-
-In the `app.js` file (located in `public/js/app.js`), ensure that state management with Vuex (or Pinia if migrated to Vue 3), form validations with Vee-Validate, and authentication with Laravel Sanctum or JWT are properly configured.
 
 ### Application Features
 
 #### 1. **Login**
 
 Allows users to log in to the platform. A registration screen is not necessary as users are pre-seeded in the backend.
+
+**Note:** To access the platform, retrieve an email from the database, and use the password `12345678`. The password is encrypted in the database.
 
 #### 2. **Contacts List**
 
@@ -101,10 +84,7 @@ In an attempt to implement state management using Pinia, I encountered several i
 
 Despite these challenges, I attempted to integrate Pinia for state management to manage the authentication process (`authStore`) and contact information (`contactStore`). However, due to these issues, I decided to maintain a simpler state management strategy until the application's core functionality was stabilized.
 
-### Future Improvements
+### Issue with PUT Method and VeeValidate
 
-Given more resources, I would:
-- Reattempt the integration of Nuxt.js, possibly by upgrading the entire stack to Vue 3 to resolve compatibility issues.
-- Further enhance the application's frontend architecture using Nuxt.js for better SSR (Server-Side Rendering).
-- Resolve the issues with Pinia state management by upgrading to Vue 3, where Pinia is fully supported and recommended.
-- Continue exploring state management solutions to handle complex state interactions effectively in future iterations of the platform.
+During the development of the contact editing feature, I encountered an issue when attempting to use the PUT method in combination with VeeValidate for form validation. The problem arose due to VeeValidate's internal handling of form submissions, which conflicted with the expected behavior of the PUT method in Laravel. Specifically, the validation errors were not properly displayed, and the form submission was not processed correctly.
+After some investigation, I found that VeeValidate’s default behavior assumes a POST request for form submissions, which led to unexpected behavior when trying to perform a PUT request. This limitation forced me to handle the form submission and validation errors manually in my Vue.js setup. To work around this, I implemented custom error handling in app.js to properly manage the validation and display errors without relying on VeeValidate's default form handling.

@@ -1,6 +1,7 @@
-import { createApp, ref } from 'vue'; // Asegúrate de importar 'ref' de Vue
+
+import { createApp, ref } from 'vue';
 import { Field, Form, ErrorMessage, defineRule, useForm } from 'vee-validate';
-import { required, email, min, digits } from '@vee-validate/rules';
+import { required, min, digits } from '@vee-validate/rules';
 import axios from 'axios';
 
 const app = createApp({
@@ -8,12 +9,13 @@ const app = createApp({
     setup() {
         
         defineRule('required', required);
-        defineRule('email', email);
         defineRule('min', min);
         defineRule('digits', digits);
 
-        
+        const profile_picture = ref(null);
+
         const { handleSubmit, errors } = useForm();
+
         const errorMessages = ref({
             email: '',
             password: '',
@@ -26,11 +28,24 @@ const app = createApp({
             profile_picture: ''
         });
 
+
+        const handleFileChange = (event) => {
+            const file = event.target.files[0];
+            if (file) {
+                profile_picture.value = file;
+            } else {
+                profile_picture.value = null;
+            }
+        };
+
+        
         const onSubmit = async (values) => {
            
             errorMessages.value.email = '';
             errorMessages.value.password = '';
             errorMessages.value.general = '';
+
+
         
             try {
                 const response = await axios.post('/api/user', {
@@ -57,6 +72,11 @@ const app = createApp({
         const onSubmitContact = async (values) => {
             
             Object.keys(errorMessages.value).forEach(key => errorMessages.value[key] = '');
+
+            if (!profile_picture.value) {
+                errorMessages.value.profile_picture = 'Profile picture is required.';
+                return;
+            }
         
             try {
                 const formData = new FormData();
@@ -92,22 +112,16 @@ const app = createApp({
                 }
             }
         };
-        
 
-        
-        
         
 
         return {
-            email: '',
-            password: '',
+           
             login: 'Login',
             welcome: 'Welcome',
             notes: 'Notes',
             contactLayout: 'Contacts',
             signin: 'Sign In',
-            name: '',
-            addBtn: 'Add Contact',
             nameInput: 'Name',
             phoneInput: 'Phone',
             addressInput: 'Address',
@@ -116,10 +130,13 @@ const app = createApp({
             titleInput: 'Title',
             emailInput: 'Email',
             image: '/images/logoBuild.jpg',
+            addBtn: 'Add Contact',
             handleSubmit: handleSubmit(onSubmit),
             handleSubmitContact: handleSubmit(onSubmitContact),
             errors,
             errorMessages,
+            profile_picture,
+            handleFileChange,
             
         }
     },
