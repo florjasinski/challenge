@@ -78,11 +78,7 @@ Implements the functionality to search for addresses using the Google Places API
 
 During the development process, I encountered challenges with integrating Nuxt.js due to compatibility issues between Vue 2 and the state management library (Pinia) recommended for use with Vue 3. After exploring multiple solutions, including downgrading dependencies and trying alternative configurations, I decided to focus on delivering a stable and functional application using Vue.js alone.
 
-### Pinia State Management
 
-In an attempt to implement state management using Pinia, I encountered several issues, especially when managing authentication (authStore) and contact management (contactStore). The primary challenge was related to the integration of Pinia with Vue 2 and the handling of state across different components.
-
-Despite these challenges, I attempted to integrate Pinia for state management to manage the authentication process (`authStore`) and contact information (`contactStore`). However, due to these issues, I decided to maintain a simpler state management strategy until the application's core functionality was stabilized.
 
 ### Issue with PUT Method and VeeValidate
 

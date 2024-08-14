@@ -59,11 +59,11 @@
                         <span>{{ $contact->address }}</span>
                     </div>
                     <div class="text-sm font-medium text-gray-700">
-                        <span class="block">[[phone]]</span>
+                        <span class="block">[[phoneShow]]</span>
                         <span>{{ $contact->phone }}</span>
                     </div>
                     <div class="text-sm font-medium text-gray-700">
-                        <span class="block">[[email]]</span>
+                        <span class="block">[[emailInput]]</span>
                         <span>{{ $contact->email }}</span>
                     </div>
                 </div>
