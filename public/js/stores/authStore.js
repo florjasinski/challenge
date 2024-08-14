@@ -1,27 +1,32 @@
-
 import { defineStore } from 'pinia';
+import { reactive } from 'vue';
 
 export const useAuthStore = defineStore('authStore', {
   state: () => ({
     user: {
       email: '',
-      password: '' 
+      password: ''
     },
-    errors: "The provided credentials do not match our records."
+    errors: reactive({})
   }),
   actions: {
     setUser(userData) {
       this.user = userData;
     },
     setErrors(errors) {
-      this.errors = errors;
+      
+      Object.keys(errors).forEach(key => {
+        this.errors[key] = errors[key];
+      });
     },
     clearErrors() {
-      this.errors = [];
+      Object.keys(this.errors).forEach(key => {
+        this.errors[key] = [];
+      });
     }
   },
   getters: {
     isAuthenticated: (state) => !!state.user,
-    hasErrors: (state) => state.errors.length > 0
+    hasErrors: (state) => Object.keys(state.errors).length > 0
   }
 });

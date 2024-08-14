@@ -1,8 +1,10 @@
 
 import { createApp, ref } from 'vue';
 import { Field, Form, ErrorMessage, defineRule, useForm } from 'vee-validate';
-import { required, min, digits } from '@vee-validate/rules';
+import { required, min, digits} from '@vee-validate/rules';
 import axios from 'axios';
+import { createPinia } from 'pinia';
+import { useAuthStore } from './stores/authStore';
 
 const app = createApp({
     delimiters: ['[[', ']]'], 
@@ -14,7 +16,11 @@ const app = createApp({
 
         const profile_picture = ref(null);
 
-        const { handleSubmit, errors } = useForm();
+        const { handleSubmit } = useForm();
+
+
+        const pinia = createPinia();
+        const authStore = useAuthStore(pinia);
 
         const errorMessages = ref({
             email: '',
@@ -41,9 +47,9 @@ const app = createApp({
         
         const onSubmit = async (values) => {
            
-            errorMessages.value.email = '';
-            errorMessages.value.password = '';
-            errorMessages.value.general = '';
+           
+
+            authStore.clearErrors();
 
 
         
@@ -55,16 +61,21 @@ const app = createApp({
         
                 if (response.data.success) {
                     window.location.href = '/api/contacts';
+                    authStore.setUser(response.data.user);
                 }
             } catch (error) {
                 if (error.response && error.response.status === 422) {
                     if (error.response.data.errors) {
-                        errorMessages.value.email = error.response.data.errors.email ? error.response.data.errors.email.join(', ') : '';
-                        errorMessages.value.password = error.response.data.errors.password ? error.response.data.errors.password.join(', ') : '';
-                        errorMessages.value.general = '';
+                        
+                        authStore.setErrors(error.response.data.errors);
+                        
+                          
+
                     }
                 } else {
-                    errorMessages.value.general = 'Invalid credentials. Please try again.';
+                    
+                    authStore.setErrors({ general: 'Invalid credentials. Please try again.' });
+  
                 }
             }
         };
@@ -133,7 +144,8 @@ const app = createApp({
             addBtn: 'Add Contact',
             handleSubmit: handleSubmit(onSubmit),
             handleSubmitContact: handleSubmit(onSubmitContact),
-            errors,
+            errors:authStore.errors,
+            isAuthenticated: authStore.isAuthenticated,
             errorMessages,
             profile_picture,
             handleFileChange,
@@ -145,5 +157,7 @@ const app = createApp({
 app.component('Field', Field);
 app.component('Form', Form);
 app.component('ErrorMessage', ErrorMessage);
+
+app.use(createPinia());
 
 app.mount('#app');

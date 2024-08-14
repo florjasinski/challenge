@@ -27,13 +27,26 @@
                     [[ login ]]
                 </button>
 
+
+                    
+                <div v-if="errors.general && errors.general.length" class="text-red-500 w-full">
+                    [[ errors.general ]]
+                </div>
+
+                <div v-if="errors.email && errors.email.length" class="text-red-500">
+                    <div v-for="error in errors.email" :key="error">[[ error ]]</div>
+                </div>
+
+               
+                <div v-if="errors.password && errors.password.length" class="text-red-500">
+                    <div v-for="error in errors.password" :key="error">[[ error ]]</div>
+                </div>
+
+
+
                
 
-                <div  v-if="errorMessages.email" class="text-red-500">[[ errorMessages.email ]]</div>
 
-                <div v-if="errorMessages.general" class="text-red-500">[[ errorMessages.general ]]</div>
-
-                <div v-if="errorMessages.password" class="text-red-500">[[ errorMessages.password ]]</div>
 
                     
             </Form>
