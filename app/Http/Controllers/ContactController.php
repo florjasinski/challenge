@@ -8,17 +8,20 @@ use Illuminate\Http\Request;
 
 class ContactController extends Controller
 {
-    public function index()
-    {
-    $user = auth()->user();
+    public function index(){
+        
+        $user = auth()->user();
+        $contact = Contact::where('user_id', $user->id)->latest()->first(); 
 
-    return view('contacts.index', [
-        'contacts' => Contact::where('user_id', $user->id)
-                            ->latest()
-                            ->filter(request(['search']))
-                            ->paginate()
-                            ->withQueryString(),
-    ]);
+        return view('contacts.index', [
+            
+            'contacts' => Contact::where('user_id', $user->id)
+                                ->latest()
+                                ->filter(request(['search']))
+                                ->paginate()
+                                ->withQueryString(),
+            'contact' => $contact
+        ]);
     }
 
     public function show(Contact $contact)

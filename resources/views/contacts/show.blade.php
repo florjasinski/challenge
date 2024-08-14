@@ -1,3 +1,5 @@
+
+
 <x-layout-register>
     <div id = "app" >     
     <section class="px-6 py-8">
@@ -22,19 +24,20 @@
 
             
                
-            <div class="absolute top-4 right-4 flex space-x-4">
+            <div class="absolute top-4 right-4 flex space-x-2 items-center">
                 <a href="/api/contacts/{{ $contact->id }}/edit" class="hover:text-black-600">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-black-500 hover:text-black-600" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-black-500 hover:text-black-600" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" style="vertical-align: middle;">
                         <path stroke-linecap="round" stroke-linejoin="round" d="M12 20h9M16.5 3a1.5 1.5 0 112.121 2.121l-9 9a1.5 1.5 0 01-.617.368l-3 1a1 1 0 01-1.263-1.263l1-3a1.5 1.5 0 01.368-.617l9-9z" />
                     </svg>
                 </a>
-                <a href="/api/contacts/{{ $contact->id }}" class="hover:text-black-600">
+                
+                <a class="hover:text-black-600">
                     <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-black-500 hover:text-black-600" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-                        <path stroke-linecap="round" stroke-linejoin="round" d="M12 4v16m8-8H4" />
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a2 2 0 01-2 2H7a2 2 0 01-2-2V7a2 2 0 012-2h4a2 2 0 012 2v1" />
                     </svg>
                 </a>
-            </div>
 
+            </div>
 
 
                 <div class="text-center">
@@ -46,6 +49,8 @@
                     </div>
                     <h1 class="mt-6 text-2xl font-bold text-gray-800">{{ $contact->name }}</h1>
                     <p class="text-gray-600">{{ $contact->title }}</p>
+
+                    
                 </div>
 
                 <div class="mt-8 space-y-4 text-center">

@@ -107,6 +107,7 @@ const app = createApp({
             contactLayout: 'Contacts',
             signin: 'Sign In',
             name: '',
+            addBtn: 'Add Contact',
             nameInput: 'Name',
             phoneInput: 'Phone',
             addressInput: 'Address',
