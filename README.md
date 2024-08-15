@@ -12,8 +12,7 @@ The application is developed using Laravel for the backend and Vue.js for the fr
 - **Node.js** (version 12 or higher) with npm to manage Vue.js dependencies.
 - **TablePlus** (or any other database management tool) to manage and inspect the database. During this process, I used TablePlus to inspect the database and ensure that data was being updated correctly.
 
-
-## Application Installation
+## Application Setup
 
 ### 1. Clone the Repository
 
@@ -23,17 +22,65 @@ Clone the repository from GitHub:
 git clone <repository-url>
 ```
 
-### 2. Prepare the Database
+### 2. Set Up the Environment
 
-Run the migrations and seeders to prepare the database:
+Before proceeding with the database setup, ensure that your environment is correctly configured:
 
-```bash
-php artisan migrate:refresh --seed
-```
+1. **Copy the environment file:**
 
-This will create the necessary tables and pre-seed the users in the database.
+   ```bash
+   cp .env.example .env
+   ```
 
-### 3. Start the Application
+2. **Configure the `.env` file:**
+
+   Open the `.env` file and configure your database connection settings. Ensure that the `DB_DATABASE`, `DB_USERNAME`, and `DB_PASSWORD` fields match your local MySQL setup. For example:
+
+   ```dotenv
+   DB_CONNECTION=mysql
+   DB_HOST=127.0.0.1
+   DB_PORT=3306
+   DB_DATABASE=laravel
+   DB_USERNAME=root
+   DB_PASSWORD=your_password
+   ```
+
+### 3. Install Dependencies
+
+Next, you'll need to install the dependencies for both Laravel (backend) and Vue.js (frontend):
+
+1. **Install Composer Dependencies:**
+
+   In the root directory of the project, run the following command to install Laravel's dependencies:
+
+   ```bash
+   composer install
+   ```
+
+2. **Install NPM Dependencies:**
+
+   If you're encountering peer dependency issues, use the `--legacy-peer-deps` flag:
+
+   ```bash
+   npm install --legacy-peer-deps
+   ```
+
+### 4. Prepare the Database
+
+Make sure your MySQL server is running and accessible. Then, create the database that Laravel will use:
+
+
+1. **Run Migrations and Seeders:**
+
+   Once the database is created and the environment is configured, run the following command to refresh the migrations and seed the database:
+
+   ```bash
+   php artisan migrate:refresh --seed
+   ```
+
+   This will create the necessary tables and pre-seed the users in the database.
+
+### 5. Start the Application
 
 Start the Laravel development server:
 
@@ -79,7 +126,5 @@ During the development process, I encountered challenges with integrating Nuxt.j
 
 ### Issue with PUT Method and VeeValidate
 
-When developing the contact editing feature, I encountered a issue with using the PUT method in conjunction with VeeValidate for form validation. The problem was particularly challenging because VeeValidate's internal form submission handling is designed primarily for POST requests.
+When developing the contact editing feature, I encountered an issue with using the PUT method in conjunction with VeeValidate for form validation. The problem was particularly challenging because VeeValidate's internal form submission handling is designed primarily for POST requests.
 VeeValidate assumes form submissions are done via POST, which led to issues when trying to perform a PUT request for updating a contact. This conflict caused the validation errors not to display correctly, and the form submission process was interrupted.
-
-
