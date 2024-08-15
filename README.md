@@ -29,7 +29,7 @@ Before proceeding with the database setup, ensure that your environment is corre
 1. **Copy the environment file:**
 
    ```bash
-   cp .env.example .env
+   copy .env.example .env
    ```
 
 2. **Configure the `.env` file:**
