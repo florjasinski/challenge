@@ -80,15 +80,17 @@ Make sure your MySQL server is running and accessible. Then, create the database
 
    This will create the necessary tables and pre-seed the users in the database.
 
+Here’s the revised section:
+
 ### 5. Start the Application
 
-Start the Laravel development server:
+First, compile and optimize your application for production:
 
 ```bash
-php artisan serve
+npm run build
 ```
 
-In a separate terminal, start the Vue.js development server:
+Then, in a separate terminal, start the Vue.js development server:
 
 ```bash
 npm run dev
