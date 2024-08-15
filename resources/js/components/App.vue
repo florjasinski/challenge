@@ -1,6 +1,6 @@
 <template>
   <div>
-    <h1>Hello, Vue!</h1>
+    <h1>Please run the command `npm run dev`</h1>
   </div>
 </template>
 
