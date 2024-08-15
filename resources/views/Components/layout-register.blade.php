@@ -46,7 +46,7 @@
     </div>
 </section>
 
-    @vite('resources/js/app.js')
+    @vite('public/js/app.js')
     
 </body>
 </html>
