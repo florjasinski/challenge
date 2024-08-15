@@ -59,11 +59,15 @@ Next, you'll need to install the dependencies for both Laravel (backend) and Vue
 
 2. **Install NPM Dependencies:**
 
-   If you're encountering peer dependency issues, use the `--legacy-peer-deps` flag:
+   If you're encountering peer dependency issues, use the following commands:
 
    ```bash
    npm install --legacy-peer-deps
    ```
+   ```bash
+   npm audit fix --force
+   ```
+
 
 ### 4. Prepare the Database
 
